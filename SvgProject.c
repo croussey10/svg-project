@@ -21,6 +21,32 @@ int main() {
         printf("Y de fin : \n");
         scanf("%d", &sizeViewportEndY);
 
+        typedef enum forme_e {
+            CERCLE,
+            RECTANGLE
+        } forme_et;
+
+        forme_et activeForme = CERCLE;
+        char forme[20];
+
+        printf("Quelle forme voulez vous dessinez ? : ");
+        scanf("%s",&forme);
+
+        switch (*forme)
+        {
+        case forme == "cercle":
+            activeForme = CERCLE;
+            printf("Vous voulez dessiner un cercle !");
+            break;
+        case forme == "rectangle":
+            activeForme = RECTANGLE;
+            printf("Vous voulez dessiner un rectangle !");
+            break;
+        default:
+            break;
+        }
+        printf("%s", forme);
+
         char cerle[1000];
         sprintf(cerle, "<svg viewBox='%d %d %d %d' xmlns='http://www.w3.org/2000/svg'>\n  <circle cx='100' cy='100' r='50' fill='green' /> \n</svg>", sizeViewportStartX, sizeViewportStartY, sizeViewportEndX, sizeViewportEndY);
         char rectangle[1000];
