@@ -48,7 +48,7 @@ int main() {
                 char forme[20] = "";
 
                 printf("Quelle [FORME] voulez vous dessinez ? : ");
-                scanf("%s",&forme);
+                scanf("%19s",forme);
                 printf("%s\n", forme);
 
                 if (strcmp(forme, "cercle") == 0) {
@@ -71,7 +71,7 @@ int main() {
                 scanf("%d %d", &positionX, &positionY);
                 printf("%d, %d\n", positionX, positionY);
                 printf("Choisissez une [COULEUR] : \n");
-                scanf("%s", &color);
+                scanf("%19s", color);
                 printf("Vous avez choisi la couleur '%s'\n", color);
 
                 switch (activeForme)
@@ -109,14 +109,12 @@ int main() {
                 }
                 printf("Vous avez dessinez un %s !\n", forme);
 
-
-                strcpy(formeChoose, formeChoose);
                 printf("%s", formeChoose);
                 strcpy(formeToDraw, formeChoose);
 
 
                 printf("Voulez vous ajoutez une autre forme [OUI/NON] ? ");
-                scanf("%s", &WantOtherForme);
+                scanf("%4s", WantOtherForme);
 
                 if (strcmp(WantOtherForme, "oui") == 0)
                 {
