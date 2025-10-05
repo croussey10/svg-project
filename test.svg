@@ -1,3 +1,5 @@
 <svg viewBox='0 0 1000 1000' xmlns='http://www.w3.org/2000/svg'>
-  <rect x='200' y='200' width='200' height='100' fill='grey' /> 
+  <circle cx='100' cy='100' r='50' fill='red' /> 
+  <polygon points='660.000000,600.000000 600.000000,690.000000 720.000000,690.000000' style='fill:blue' /> 
+  <rect x='500' y='600' width='150' height='100' fill='green' /> 
 </svg>
