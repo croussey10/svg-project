@@ -6,7 +6,6 @@
 int main() {
         FILE* my_file = fopen("test.svg", "w");
 
-        int i = 0;
         bool addForme = true;
         char WantOtherForme[5] = "A";
 
@@ -31,6 +30,8 @@ int main() {
         strcpy(formeChose, sizeViewport);
 
         char formeToDraw[10000] = "";
+        char color[20] = "";
+        int i = 0;
 
         while (i < 10)
         {
@@ -74,9 +75,12 @@ int main() {
                     //scanf("Position X : %d, Position Y : %d", &positionX, &positionY);
                     scanf("%d %d", &positionX, &positionY);
                     printf("%d, %d\n", positionX, positionY);
+                    printf("Choisissez une couleur : \n");
+                    scanf("%s", &color);
+                    printf("Vous avez choisi la couleur '%s'\n", color);
                     printf("Vous avez dessinez un cercle !\n");
                     char cercle[1000];
-                    sprintf(cercle, "  <circle cx='%d' cy='%d' r='50' fill='green' /> \n", positionX, positionY);
+                    sprintf(cercle, "  <circle cx='%d' cy='%d' r='50' fill='%s' /> \n", positionX, positionY, color);
                     //strcpy(formeChose, cercle);
                     strcat(formeChose, cercle);
                     break;
@@ -84,9 +88,12 @@ int main() {
                     printf("A quelle position X, Y voulez vous dessinez votre rectangle ?\n");
                     scanf("%d %d", &positionX, &positionY);
                     printf("%d, %d\n", positionX, positionY);
+                    printf("Choisissez une couleur : \n");
+                    scanf("%s", &color);
+                    printf("Vous avez choisi la couleur '%s'\n", color);
                     printf("Vous avez dessinez un rectangle !\n");
                     char rectangle[1000];
-                    sprintf(rectangle, "  <rect x='%d' y='%d' width='100' height='100' /> \n", positionX, positionY);
+                    sprintf(rectangle, "  <rect x='%d' y='%d' width='200' height='100' fill='%s' /> \n", positionX, positionY, color);
                     strcat(formeChose, rectangle);
                     break;
                 case CARRE:
