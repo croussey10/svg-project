@@ -13,18 +13,6 @@ int main() {
         int sizeViewportEndX = 0;
         int sizeViewportStartY = 0;
         int sizeViewportEndY = 0;
-
-
-        /*for (int j = 0; j < 5; j++)
-        {
-            char testC[100] = "cercle";
-            char testR[100] = "rectangle";
-            char testT[100] = "triangle";
-
-            char *arrayForme[5];
-            arrayForme[j] = testC;
-            printf("%s", arrayForme[j]);
-        }*/
         
     
         printf("Rentrer la dimension du tableau\n");
@@ -45,6 +33,8 @@ int main() {
         char formeToDraw[10000] = "";
         char color[20] = "";
         int i = 0;
+
+        char * arrayForme[10];
 
         while (i < 10)
         {
@@ -98,7 +88,6 @@ int main() {
                     scanf("%d", &rayon);
                     char cercle[1000];
                     sprintf(cercle, "  <circle cx='%d' cy='%d' r='%d' fill='%s' /> \n", positionX, positionY, rayon, color);
-                    //arrayForme[i] = cercle;
                     strcat(formeChoose, cercle);
                     break;
                 case RECTANGLE:
@@ -108,7 +97,6 @@ int main() {
                     scanf("%d %d", &width, &height);
                     char rectangle[1000];
                     sprintf(rectangle, "  <rect x='%d' y='%d' width='%d' height='%d' fill='%s' /> \n", positionX, positionY, width, height, color);
-                    //arrayForme[i] = rectangle;
                     strcat(formeChoose, rectangle);
                     break;
                 case TRIANGLE:
@@ -125,6 +113,10 @@ int main() {
                     printf("Faites une forme valide !\n");
                     break;
                 }
+
+                arrayForme[i] = malloc(strlen(formeChoose) + 1);
+                //strcpy(arrayForme[i], formeChoose);
+
                 printf("Vous avez dessinez un %s !\n", forme);
 
                 printf("%s", formeChoose);
@@ -135,7 +127,7 @@ int main() {
                 scanf("%4s", WantOtherForme);
 
                 if (strcmp(WantOtherForme, "oui") == 0)
-                {
+                {   
                     addForme = true;
                 } else {
                     //printf("%s %s %s", arrayForme[0], arrayForme[1], arrayForme[2]);
