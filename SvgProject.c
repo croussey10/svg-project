@@ -13,6 +13,19 @@ int main() {
         int sizeViewportEndX = 0;
         int sizeViewportStartY = 0;
         int sizeViewportEndY = 0;
+
+
+        /*for (int j = 0; j < 5; j++)
+        {
+            char testC[100] = "cercle";
+            char testR[100] = "rectangle";
+            char testT[100] = "triangle";
+
+            char *arrayForme[5];
+            arrayForme[j] = testC;
+            printf("%s", arrayForme[j]);
+        }*/
+        
     
         printf("Rentrer la dimension du tableau\n");
         printf("[X] de depart : \n");
@@ -73,6 +86,9 @@ int main() {
                 printf("Choisissez une [COULEUR] : \n");
                 scanf("%19s", color);
                 printf("Vous avez choisi la couleur '%s'\n", color);
+                
+                
+                //char *arrayForme[5];
 
                 switch (activeForme)
                 {
@@ -82,6 +98,7 @@ int main() {
                     scanf("%d", &rayon);
                     char cercle[1000];
                     sprintf(cercle, "  <circle cx='%d' cy='%d' r='%d' fill='%s' /> \n", positionX, positionY, rayon, color);
+                    //arrayForme[i] = cercle;
                     strcat(formeChoose, cercle);
                     break;
                 case RECTANGLE:
@@ -91,6 +108,7 @@ int main() {
                     scanf("%d %d", &width, &height);
                     char rectangle[1000];
                     sprintf(rectangle, "  <rect x='%d' y='%d' width='%d' height='%d' fill='%s' /> \n", positionX, positionY, width, height, color);
+                    //arrayForme[i] = rectangle;
                     strcat(formeChoose, rectangle);
                     break;
                 case TRIANGLE:
@@ -120,9 +138,9 @@ int main() {
                 {
                     addForme = true;
                 } else {
+                    //printf("%s %s %s", arrayForme[0], arrayForme[1], arrayForme[2]);
                     addForme = false;
                     strcat(formeToDraw, "</svg>");
-                    //printf("%s", formeToDraw);
                     fprintf(my_file, formeToDraw);
                     fclose(my_file);
                     break;
@@ -130,6 +148,7 @@ int main() {
             } else {
                 break;
             }
+            i++;
         }
     return 0;
 }
