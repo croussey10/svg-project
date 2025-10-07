@@ -10,12 +10,12 @@ int main() {
         char WantOtherForme[5] = "";
 
         int sizeViewportStartX = 0;
-        int sizeViewportEndX = 0;
+        int sizeViewportEndX = 1000;
         int sizeViewportStartY = 0;
-        int sizeViewportEndY = 0;
+        int sizeViewportEndY = 1000;
         
     
-        printf("Rentrer la dimension du tableau\n");
+        /*printf("Rentrer la dimension du tableau\n");
         printf("[X] de depart : \n");
         scanf("%d", &sizeViewportStartX);
         printf("[X] de fin : \n");
@@ -23,18 +23,19 @@ int main() {
         printf("[Y] de depart : \n");
         scanf("%d", &sizeViewportStartY);
         printf("[Y] de fin : \n");
-        scanf("%d", &sizeViewportEndY);
+        scanf("%d", &sizeViewportEndY);*/
 
         char formeChoose[1000] = "";
         char sizeViewport[1000];
         sprintf(sizeViewport, "<svg viewBox='%d %d %d %d' xmlns='http://www.w3.org/2000/svg'>\n", sizeViewportStartX, sizeViewportStartY, sizeViewportEndX, sizeViewportEndY);
-        strcpy(formeChoose, sizeViewport);
+        //strcpy(formeChoose, sizeViewport);
 
         char formeToDraw[10000] = "";
+        strcpy(formeToDraw, sizeViewport);
         char color[20] = "";
         int i = 0;
 
-        char * arrayForme[10];
+        char * arrayForme[10] = {NULL};
 
         while (i < 10)
         {
@@ -76,9 +77,6 @@ int main() {
                 printf("Choisissez une [COULEUR] : \n");
                 scanf("%19s", color);
                 printf("Vous avez choisi la couleur '%s'\n", color);
-                
-                
-                //char *arrayForme[5];
 
                 switch (activeForme)
                 {
@@ -88,7 +86,10 @@ int main() {
                     scanf("%d", &rayon);
                     char cercle[1000];
                     sprintf(cercle, "  <circle cx='%d' cy='%d' r='%d' fill='%s' /> \n", positionX, positionY, rayon, color);
-                    strcat(formeChoose, cercle);
+                    //strcat(formeChoose, cercle);
+                    strcpy(formeChoose, cercle);
+                    arrayForme[i] = malloc(strlen(formeChoose) + 1);
+                    strcpy(arrayForme[i], formeChoose);
                     break;
                 case RECTANGLE:
                     int width = 0;
@@ -97,7 +98,9 @@ int main() {
                     scanf("%d %d", &width, &height);
                     char rectangle[1000];
                     sprintf(rectangle, "  <rect x='%d' y='%d' width='%d' height='%d' fill='%s' /> \n", positionX, positionY, width, height, color);
-                    strcat(formeChoose, rectangle);
+                    strcpy(formeChoose, rectangle);
+                    arrayForme[i] = malloc(strlen(formeChoose) + 1);
+                    strcpy(arrayForme[i], formeChoose);
                     break;
                 case TRIANGLE:
                     double scale = 0;
@@ -106,7 +109,9 @@ int main() {
                     char triangle[1000];
                     printf("%d %d", positionX, positionY);
                     sprintf(triangle, "  <polygon points='%lf,%lf %lf,%lf %lf,%lf' style='fill:%s' /> \n", scale * 1 + positionX, 0 + (double)positionY, 0 + (double)positionX, scale * 1.5 + positionY, scale * 2 + positionX, scale * 1.5 + positionY, color);
-                    strcat(formeChoose, triangle);
+                    strcpy(formeChoose, triangle);
+                    arrayForme[i] = malloc(strlen(formeChoose) + 1);
+                    strcpy(arrayForme[i], formeChoose);
                     break;
                 
                 default:
@@ -114,29 +119,60 @@ int main() {
                     break;
                 }
 
-                arrayForme[i] = malloc(strlen(formeChoose) + 1);
-                //strcpy(arrayForme[i], formeChoose);
-
                 printf("Vous avez dessinez un %s !\n", forme);
 
                 printf("%s", formeChoose);
-                strcpy(formeToDraw, formeChoose);
-
 
                 printf("Voulez vous ajoutez une autre forme [OUI/NON] ? ");
                 scanf("%4s", WantOtherForme);
 
+                int formeSupp = 0;
+
                 if (strcmp(WantOtherForme, "oui") == 0)
                 {   
                     addForme = true;
-                } else {
-                    //printf("%s %s %s", arrayForme[0], arrayForme[1], arrayForme[2]);
+                } else if (strcmp(WantOtherForme, "non") == 0) {
                     addForme = false;
+
+                    int j = 0;
+                    while (j < 10)
+                    {
+                        printf("%s", arrayForme[j]);
+                        if (arrayForme[j] != NULL) {
+                            strcat(formeToDraw, arrayForme[j]);
+                        }
+                        j++;
+                    }
+                    
                     strcat(formeToDraw, "</svg>");
                     fprintf(my_file, formeToDraw);
                     fclose(my_file);
                     break;
+                } else if (strcmp(WantOtherForme, "supp") == 0) {
+                    printf("Quelle forme voulez vous supp ? ");
+                    scanf("%d", &formeSupp);
+                    arrayForme[formeSupp] = NULL;
+                    char otherForme[5] = "";
+
+                    printf("Voulez vous ajoutez d'autres formes ? ");
+                    scanf("%s", &otherForme);
+                    if (strcmp(otherForme, "non") == 0) {
+                        int j = 0;
+                        while (j < 10)
+                        {
+                            printf("%s", arrayForme[j]);
+                            if (arrayForme[j] != NULL) {
+                                strcat(formeToDraw, arrayForme[j]);
+                            }
+                            j++;
+                        }
+                        strcat(formeToDraw, "</svg>");
+                        fprintf(my_file, formeToDraw);
+                        fclose(my_file);
+                        break;
+                        }
                 }
+                
             } else {
                 break;
             }

@@ -11,7 +11,7 @@ int main() {
     int valueDelete = 0;
 
     for (int i = 0; i < 3; i++)
-    {
+    {   
         printf("Choisr une couleur : ");
         scanf("%9s", choseColor);
         printf("Vous avez chois la couleur : %s \n", choseColor);
@@ -39,8 +39,8 @@ int main() {
     printf("%s\n", colorArray[1]);
     printf("%s\n", colorArray[2]);
 
-    /*size_t nb_elem  = sizeof colorArray / sizeof *colorArray;
-    printf ("nb_elem = %lu\n", (unsigned long) nb_elem);*/
+    size_t nb_elem  = sizeof colorArray / sizeof *colorArray;
+    printf ("nb_elem = %lu\n", (unsigned long) nb_elem);
     
     return 0;
 }
