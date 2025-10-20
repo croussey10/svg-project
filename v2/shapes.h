@@ -9,6 +9,20 @@ typedef struct {
 } sizeViewport_st;
 
 typedef struct {
+    char color[20];
+} color_st;
+
+typedef enum {
+    CERCLE,
+    ELLIPSE,
+    CARRE,
+    RECTANGLE,
+    LIGNE,
+    POLYLINE,
+    POLYGONE
+} shapesType_en;
+
+typedef struct {
     int posX;
     int posY;
     int rayon;
@@ -45,25 +59,15 @@ typedef struct point {
     int x;
     int y;
     struct point *next;
-} Point;
+} point_st;
 
 typedef struct {
-    Point* head_points;
+    point_st* headPoints;
 } polyline_st;
 
 typedef struct {
-    Point* head_points;
+    point_st* headPoints;
 } polygone_st;
-
-typedef enum {
-    CERCLE,
-    ELLIPSE,
-    CARRE,
-    RECTANGLE,
-    LIGNE,
-    POLYLINE,
-    POLYGONE
-} shapesType_en;
 
 typedef union {
     cercle_st cercle;
@@ -75,28 +79,19 @@ typedef union {
     polygone_st polygone;
 } shapesData_un;
 
-typedef struct list {
+typedef struct listSvg {
     shapesType_en type;
     shapesData_un data;
-    struct list *next;
-} List;
+    color_st color;
+    struct listSvg *next;
+} ListSvg_st;
 
-List* makeNewNode(List* head, shapesType_en type, shapesData_un data);
-Point* makeNewPoint(Point* head, int x, int y);
-//void print_list(List* head);
-int ask_for_int(char* message);
+ListSvg_st* make_new_node(ListSvg_st* head, shapesType_en type, shapesData_un data, color_st color);
+point_st* make_new_point(point_st* head, int x, int y);
 
-List* create_and_insert_circle(List* head, int j);
-List* create_and_insert_ellipse(List* head, int j);
-List* create_and_insert_carre(List* head, int j);
-List* create_and_insert_rectangle(List* head, int j);
-List* create_and_insert_line(List* head, int j);
-List* create_and_insert_polyline(List* head, int j);
-List* create_and_insert_polygone(List* head, int j);
+void free_points(point_st* head);
+void free_list(ListSvg_st* head);
 
-void Make_Viewport();
-
-void generate_svg_line(List* node, FILE* file);
-
+void generate_svg(ListSvg_st* node, FILE* file);
 
 #endif

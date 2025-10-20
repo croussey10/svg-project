@@ -2,56 +2,67 @@
 #include <stdio.h>
 #include <string.h>
 #include "shapes.h"
+#include "menu.h"
 
 int main()
 {   
 
     FILE* my_file = fopen("file.svg", "w");
-    fprintf(my_file, "<svg viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'>\n");
+    char* sizeViewport = Make_Viewport();
+    fprintf(my_file, sizeViewport);
+    free(sizeViewport);
 
-    List* head;
+    ListSvg_st* head;
     head = NULL;
     int count = 1;
 
-    for (int j = 0; j < 3; j++)
+    for (int j = 0; j < count; j++)
     {   
-        char shapeChoose[100];
 
-        printf("Quelle forme voulez vous dessinez ? ");
-        scanf("%s", shapeChoose);
+        char addShape[4];
+        printf("Voulez vous ajoutez une forme ?\n");
+        scanf("%s", addShape);
 
-        if (strcmp(shapeChoose, "cercle") == 0) {
-            head = create_and_insert_circle(head, j);
-        } else if (strcmp(shapeChoose, "ellipse") == 0) {
-            head = create_and_insert_ellipse(head, j);
-        } else if (strcmp(shapeChoose, "carre") == 0) {
-            head = create_and_insert_carre(head, j);
-        } else if (strcmp(shapeChoose, "rectangle") == 0) {
-            head = create_and_insert_rectangle(head, j);
-        } else if (strcmp(shapeChoose, "ligne") == 0) {
-            head = create_and_insert_line(head, j);
-        } else if (strcmp(shapeChoose, "polyligne") == 0) {
-            head = create_and_insert_polyline(head, j);
-        } else if (strcmp(shapeChoose, "polygone") == 0) {
-            head = create_and_insert_polygone(head, j);
-        } 
-        else {
-            printf("Forme non valide\n");
-            j--;
+        if (strcmp(addShape, "oui") == 0) {
+            char shapeChoose[100];
+            printf("Quelle forme voulez vous dessinez ? ");
+            scanf("%s", shapeChoose);
+
+            if (strcmp(shapeChoose, "cercle") == 0) {
+                head = create_and_insert_circle(head);
+            } else if (strcmp(shapeChoose, "ellipse") == 0) {
+                head = create_and_insert_ellipse(head);
+            } else if (strcmp(shapeChoose, "carre") == 0) {
+                head = create_and_insert_carre(head);
+            } else if (strcmp(shapeChoose, "rectangle") == 0) {
+                head = create_and_insert_rectangle(head);
+            } else if (strcmp(shapeChoose, "ligne") == 0) {
+                head = create_and_insert_line(head);
+            } else if (strcmp(shapeChoose, "polyligne") == 0) {
+                head = create_and_insert_polyline(head);
+            } else if (strcmp(shapeChoose, "polygone") == 0) {
+                head = create_and_insert_polygone(head);
+            } 
+            else {
+                printf("Forme non valide\n");
+                j--;
+            }
+            count++;
+        } else {
+            break;
         }
-
-        //print_list(head);
-        count++;
     }
 
-    List* current = head;
+    ListSvg_st* current = head;
     while (current != NULL) {
-        generate_svg_line(current, my_file); 
+        generate_svg(current, my_file);
         current = current->next;
     }
 
+    free_list(head);
+
     fprintf(my_file, "</svg>");
     fclose(my_file);
-    return 0;
+    return EXIT_SUCCESS;
 }
  
