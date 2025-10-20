@@ -48,8 +48,11 @@ int main()
                 j--;
             }
             count++;
-        } else {
+        } else if (strcmp(addShape, "non") == 0) {
             break;
+        } else {
+            printf("Veuillez repondre par 'oui' ou 'non' !\n");
+            j--;
         }
     }
 
