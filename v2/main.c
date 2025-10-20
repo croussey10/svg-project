@@ -56,10 +56,9 @@ int main()
         }
     }
 
-    ListSvg_st* current = head;
-    while (current != NULL) {
-        generate_svg(current, my_file);
-        current = current->next;
+    while (head != NULL) {
+        generate_svg(head, my_file);
+        head = head->next;
     }
 
     free_list(head);

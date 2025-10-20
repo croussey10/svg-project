@@ -3,21 +3,21 @@
 #include <string.h>
 #include "shapes.h"
 
-ListSvg_st* make_new_node(ListSvg_st* head, shapesType_en type, shapesData_un data, color_st color) {
-    ListSvg_st* new_node = malloc(sizeof(ListSvg_st));
-    new_node->type = type;
-    new_node->data = data;
-    new_node->color = color;
-    new_node->next = head;
-    return new_node;
+ListSvg_st* make_new_node(ListSvg_st* head, shapesType_en typeShape, shapesData_un dataShape, color_st colorShape) {
+    ListSvg_st* newNode = malloc(sizeof(ListSvg_st));
+    newNode->type = typeShape;
+    newNode->data = dataShape;
+    newNode->color = colorShape;
+    newNode->next = head;
+    return newNode;
 }
 
-point_st* make_new_point(point_st* head, int x, int y) {
-    point_st* new_point = malloc(sizeof(point_st));
-    new_point->x = x;
-    new_point->y = y;
-    new_point->next = head;
-    return new_point;
+point_st* make_new_point(point_st* head, int xNextPoint, int yNextPoint) {
+    point_st* newPoint = malloc(sizeof(point_st));
+    newPoint->x = xNextPoint;
+    newPoint->y = yNextPoint;
+    newPoint->next = head;
+    return newPoint;
 }
 
 void free_points(point_st* head) {

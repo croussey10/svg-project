@@ -86,8 +86,8 @@ typedef struct listSvg {
     struct listSvg *next;
 } ListSvg_st;
 
-ListSvg_st* make_new_node(ListSvg_st* head, shapesType_en type, shapesData_un data, color_st color);
-point_st* make_new_point(point_st* head, int x, int y);
+ListSvg_st* make_new_node(ListSvg_st* head, shapesType_en typeShape, shapesData_un dataShape, color_st colorShape);
+point_st* make_new_point(point_st* head, int xNextPoint, int yNextPoint);
 
 void free_points(point_st* head);
 void free_list(ListSvg_st* head);
