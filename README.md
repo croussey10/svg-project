@@ -31,13 +31,13 @@ L'utilisateur peut choisir parmi les formes suivantes : **cercle**, **ellipse**,
 
 | Forme | Paramètres Demandés |
 | :--- | :--- |
-| **Cercle** | Position X/Y du centre, Rayon, **Couleur de remplissage** (en anglais) |
-| **Ellipse** | Position X/Y du centre, Rayon X, Rayon Y, **Couleur de remplissage** (en anglais) |
-| **Carré** | Position X/Y du coin supérieur gauche, Taille du côté, **Couleur de remplissage** (en anglais) |
-| **Rectangle** | Position X/Y du coin supérieur gauche, Largeur, Longueur, **Couleur de remplissage** (en anglais) |
-| **Ligne** | Position X/Y du premier point, Position X/Y du deuxième point, **Couleur du tracé** (en anglais) |
-| **Polyligne** | Nombre de points, puis position X/Y pour chaque point consécutif, **Couleur du tracé** (en anglais) |
-| **Polygone** | Nombre de points, puis position X/Y pour chaque point consécutif, **Couleur de remplissage** (en anglais) |
+| **Cercle** | Position X/Y du centre, Rayon, **Couleur de remplissage**  |
+| **Ellipse** | Position X/Y du centre, Rayon X, Rayon Y, **Couleur de remplissage**  |
+| **Carré** | Position X/Y du coin supérieur gauche, Taille du côté, **Couleur de remplissage**  |
+| **Rectangle** | Position X/Y du coin supérieur gauche, Largeur, Longueur, **Couleur de remplissage**  |
+| **Ligne** | Position X/Y du premier point, Position X/Y du deuxième point, **Couleur du tracé**  |
+| **Polyligne** | Nombre de points, puis position X/Y pour chaque point consécutif, **Couleur du tracé**  |
+| **Polygone** | Nombre de points, puis position X/Y pour chaque point consécutif, **Couleur de remplissage**  |
 
 > **Note :** Toutes les couleurs doivent être spécifiées en anglais (ex: "red", "blue", "green").
 
